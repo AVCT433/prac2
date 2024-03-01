@@ -1,0 +1,106 @@
+# Configuration for pytest
+#
+# https://docs.pytest.org/en/latest/reference.html#ini-options-ref
+#
+# VSCode (settings.json):
+#   "python.testing.pytestEnabled": true,
+#   "python.testing.promptToConfigure": true,
+#   "python.testing.autoTestDiscoverOnSaveEnabled": true,
+
+
+[tool.pytest.ini_options]
+minversion = "6.0"     # Minimum version of pytest required
+pythonpath = [ "src" ] # Add paths to sys.path
+
+addopts = [
+    # "--doctest-modules",
+    # "--collect-only",
+    # "--setup-show",
+    # "--setup-only",
+    # ------------------ Failures  ------------------
+    "--maxfail=1",
+    # "--full-trace",
+    # "--last-failed",
+    # "--new-first",
+    # ------------------ Capture   ------------------
+    "--color=yes",
+    # choice: "fd", "sys", "no", "tee-sys"
+    "--capture=sys",
+    # "--capture=tee-sys",
+    # "--capture=no",
+    # "-s",             # shortcut for --capture=no
+    # "--show-capture=all",
+    # "--show-capture=stdout",
+    "--show-capture=log",
+    # "--show-capture=stderr",
+    # "--show-capture=no",
+    # ------------------ Coverage  ------------------
+    "--cov=.",
+    #
+    # "--cov-append",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--no-cov-on-fail",
+    # ------------------ Strictness -----------------
+    "--strict-config",
+    "--strict-markers",
+    # ------------------ Verbosity ------------------
+    # "--verbose",
+    # "-vv",
+    # "-q",            # quiet (no output)
+    # ------------------ Warnings  ------------------
+    "-W module",
+    # "-W ignore::DeprecationWarning",
+    "-W ignore::DeprecationWarning:pkg_resources",
+    "-W ignore::DeprecationWarning:ray._private.parameter",
+    # ------------------ Markers   ------------------
+    # "-m=mandatory and not ignore",# and not manual",
+    # "-m=not ignore",
+    # "-m=not ignore and not manual",
+    # "-m=not ignore and not manual and not slow",
+    # ------------------ Output    ------------------
+    # -r : show extra test summary info as specified by chars
+    # (f)ailed, (E)error
+    # (x)failed, (X)xpassed,
+    # (s)skipped, (w)warnings
+    # (a)all except passed (p/P), (A)all
+    # (p)passed, (P)passed with output
+    "-rA",
+    # "-rpP",
+    # "-rxXs",
+    # ------------------ Other     ------------------
+    # "-E",    # ignore all PYTHON* environment variables
+    # "-OO",   # remove assert statements from code and also remove docstrings
+]
+
+log_cli       = true
+log_cli_level = "DEBUG"
+
+norecursedirs = [
+    ".*",
+    ".venv",
+    "__*",
+    "build",
+    "dist",
+    "script*",
+    "scripts",
+    "temp*",
+    "tmp*",
+]
+
+filterwarnings = [ "ignore::DeprecationWarning" ]
+
+testpaths = [ "**/test", "**/tests" ]
+
+python_files = [ "test_*.py" ]
+
+# python_classes   = [  ] # [ "Test*", "*Test" ]
+# python_functions = [  ] # [ "test_*", "*_test" ]
+
+# Markers to be used in tests
+markers = [
+    "ignore: Ignore this test",
+    "mandatory: Must be implemented",
+    "manual: Manually run this test",
+    "slow: Slow test",
+]
