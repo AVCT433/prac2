@@ -33,7 +33,7 @@ exclude = [
 
     [tool.poetry.group.test.dependencies]
     pytest     = "^8.0.2"
-    pytest-cov = "^4.1.0"
+    pytest-cov = "^5.0.0"
 
     [tool.poetry.group.utils.dependencies]
     pathlib  = "^1.0.1"
